@@ -1,0 +1,39 @@
+VERIFICACIÓN DEL REPOSITORIO BASE
+
+Repositorio revisado:
+https://github.com/BOWadapter/HerramientasVisualizacion
+Rama consultada: main
+
+Comparación con el repositorio del estudiante:
+https://github.com/AxMrls/HerramientasVisualizacion
+
+Coincidencias exactas confirmadas mediante SHA de Git:
+- dashboard_banxico.py
+  SHA en BOWadapter: d07b75e884fbf39838b534297e06589b2e51899b
+  SHA en AxMrls:     d07b75e884fbf39838b534297e06589b2e51899b
+
+- requirements.txt
+  SHA en BOWadapter: 25c7d35451cc900234041b32869389fb87c31d1c
+  SHA en AxMrls:     25c7d35451cc900234041b32869389fb87c31d1c
+
+Conclusión:
+Los archivos principales del dashboard y sus dependencias son idénticos
+en ambos repositorios. Por tanto, BOWadapter/HerramientasVisualizacion
+es una referencia base muy sólida para esta práctica.
+
+Límite de la verificación:
+GitHub muestra ambos repositorios con fork=false y el README del repositorio
+BOWadapter no identifica explícitamente al propietario como docente.
+La coincidencia de código confirma que es la misma base técnica, pero no
+permite demostrar por sí sola la identidad o el rol de su propietario.
+
+Cambio implementado sobre esa base:
+- Se conserva la consulta al SIE de Banxico y sus controles.
+- Se conserva la serie temporal/media móvil (o comparación base 100).
+- Se conserva el cambio porcentual mensual.
+- Se conserva el Boxplot anual.
+- Se elimina el mapa de calor de promedios por mes y año.
+- Se incorpora un histograma de distribución de variaciones porcentuales,
+  con líneas de media y mediana.
+- Se agrega una quinta gráfica de volatilidad anual, calculada mediante la
+  desviación estándar de las variaciones porcentuales.

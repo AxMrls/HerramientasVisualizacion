@@ -1,5 +1,1 @@
-streamlit
-requests
-pandas
-matplotlib
-seaborn
+streamlit\nrequests\npandas\nmatplotlib\nseaborn\nnumpy\n

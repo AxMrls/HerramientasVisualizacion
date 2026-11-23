@@ -1,0 +1,34 @@
+VALIDACIÓN DE IMPLEMENTACIÓN - DASHBOARD BANXICO
+
+1. Compilación sintáctica:
+   dashboard_banxico.py: OK
+   dashboard_utils.py: OK
+   tests/test_dashboard_utils.py: OK
+
+2. Pruebas unitarias:
+   6 de 6 pruebas aprobadas.
+   - Cálculo de variaciones porcentuales.
+   - Tratamiento del primer valor.
+   - Descarte de resultados infinitos.
+   - Tratamiento de datos faltantes.
+   - Cálculo de volatilidad anual.
+   - Descarte de valores inválidos en volatilidad.
+
+3. Disponibilidad de dependencias en el entorno de validación:
+   streamlit: no instalado
+   requests: disponible
+   pandas: disponible
+   numpy: disponible
+   matplotlib: disponible
+   seaborn: disponible
+
+4. Alcance:
+   La validación ejecutó las pruebas estadísticas y la compilación.
+   Se añadió una quinta gráfica para comparar la volatilidad anual.
+   No se realizó una consulta en vivo al SIE de Banxico porque el token
+   personal no se incluyó en el paquete ni fue proporcionado para esta prueba.
+   Para validar datos reales, configurar .streamlit/secrets.toml localmente.
+5. Revisión del repositorio base:
+   dashboard_banxico.py y requirements.txt tienen SHA idénticos
+   en BOWadapter/HerramientasVisualizacion y AxMrls/HerramientasVisualizacion.
+   Detalle: evidencias/origen_base.txt.
