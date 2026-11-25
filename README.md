@@ -1,103 +1,28 @@
-# Herramientas de Visualización
+# Dashboard Streamlit — API SIE de Banxico
 
-Dashboard interactivo desarrollado con Python y Streamlit para consultar y visualizar datos del Sistema de Información Económica (SIE) del Banco de México.
+Implementación reproducible de un panel interactivo que consume datos reales de la API REST de Banco de México (SIE). Incluye indicadores, cinco visualizaciones (serie y media móvil; variación; histograma; boxplot; volatilidad), comparación base 100, filtros y exportación CSV.
 
-## Funcionalidades
+**Origen:** adaptación propuesta para la tarea de visualización relacionada con https://github.com/AxMrls/HerramientasVisualizacion. Este paquete no afirma haber sido publicado en ese repositorio.
 
-- Consulta de series económicas mediante la API REST de Banxico.
-- Selección de claves y periodos.
-- Indicadores estadísticos del periodo consultado.
-- Serie temporal y media móvil.
-- Comparación de varias series en base 100.
-- Variaciones porcentuales mensuales.
-- Diagrama de caja (Boxplot) de variaciones por año.
-- Histograma de distribución de variaciones porcentuales.
-- Comparación de volatilidad anual mediante desviación estándar.
-- Visualización y descarga de datos CSV.
-
-## Repositorio base consultado
-
-La implementación parte del código de:
-https://github.com/BOWadapter/HerramientasVisualizacion
-
-Se verificó que `dashboard_banxico.py` y `requirements.txt` tienen el mismo
-SHA de archivo en el repositorio base y en el repositorio del estudiante.
-El detalle de la comparación se encuentra en `evidencias/origen_base.txt`.
-
-## Cambio realizado en la práctica
-
-Se retiró el mapa de calor de promedios mensuales por año y se incorporó un histograma de variaciones porcentuales entre observaciones consecutivas. Además, para cumplir con el requisito de cinco gráficas, se añadió una comparación de volatilidad anual mediante la desviación estándar de las variaciones.
-
-El histograma permite observar la frecuencia de los cambios, identificar dónde se concentran los valores y comparar la media con la mediana. El gráfico de volatilidad anual permite comparar la variabilidad de los cambios entre años. Se conserva el Boxplot porque aporta una lectura complementaria de dispersión y valores atípicos por año.
-
-## Requisitos
-
-- Python 3.10 o superior.
-- Token gratuito del SIE de Banxico.
-
-## Instalación
-
-### Windows
+## Ejecutar en Windows PowerShell
 
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-```
-
-### Linux
-
-```bash
-python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
-```
-
-## Configuración del token
-
-Crea la carpeta `.streamlit` y dentro el archivo `secrets.toml`:
-
-```toml
-banxico_token = "TU_TOKEN"
-```
-
-También se admite la variable de entorno `BANXICO_TOKEN`.
-
-**No compartas ni subas `secrets.toml` a GitHub.**
-
-Solicitar token:
-https://www.banxico.org.mx/SieAPIRest/service/v1/token
-
-## Ejecución
-
-### Windows
-
-```powershell
+Copy-Item .streamlit\secrets.toml.example .streamlit\secrets.toml
+notepad .streamlit\secrets.toml
 .\.venv\Scripts\python.exe -m streamlit run dashboard_banxico.py
 ```
 
-### Linux
+Sustituir `PON_AQUI_TU_TOKEN_PERSONAL` por el token obtenido en https://www.banxico.org.mx/SieAPIRest/service/v1/token. El archivo `secrets.toml` **nunca** se sube a GitHub. Alternativa: usar variable de entorno `BANXICO_TOKEN`.
 
-```bash
-.venv/bin/python -m streamlit run dashboard_banxico.py
-```
+## Evidencia real
 
-## Pruebas
+1. Inicia la aplicación y confirma que muestra datos sin errores; requiere conexión y token Banxico válido.
+2. Abre http://localhost:8501 y toma capturas con `Win + Shift + S`, o graba la ventana con `Win + Alt + R`.
+3. Guarda capturas en `evidencias/` con nombres `01_panel.png`, `02_graficas.png`, `03_descarga.png`; deben mostrar el funcionamiento real, no simulaciones.
+4. Ejecuta `git status`, agrega cambios con `git add .`, crea commit con `git commit -m "feat: dashboard SIE en Streamlit"`, y publica con `git push`. Necesitas permiso de escritura en el repositorio destino; si no lo tienes, usa tu fork o pide acceso al propietario.
 
-```bash
-python -m unittest discover -s tests -v
-```
+## Seguridad y reproducibilidad
 
-Las pruebas verifican el cálculo de variaciones porcentuales, el tratamiento del primer dato, los valores infinitos y los datos faltantes.
-
-## Dependencias
-
-- Streamlit
-- Requests
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-
-## Fuente de datos
-
-Banco de México. Sistema de Información Económica (SIE).
-https://www.banxico.org.mx/SieAPIRest/
+Token excluido por `.gitignore`; caché con TTL de una hora; peticiones HTTP con timeout; valores no numéricos tratados como faltantes; protección ante división por cero.
